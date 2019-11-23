@@ -5,9 +5,11 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.express as px
-
+import pickle
+from pages import index, predictions, insights, process
 # Imports from this application
 from app import app
+
 
 # 2 column layout. 1st column width = 4/12
 # https://dash-bootstrap-components.opensource.faculty.ai/l/components/layout
@@ -16,29 +18,26 @@ column1 = dbc.Col(
         dcc.Markdown(
             """
         
-            ## Your Value Proposition
+            ## What matters matter most in a Sumo fight
 
-            Emphasize how the app will benefit users. Don't emphasize the underlying technology.
+            Professional Sumo's get together and fight six times a year in tournaments called Honbasho's, this is where they get a chance to rank up and climb the ladder. The rules are simple. You win, you go up. You lose, you go down; no weight class and no age groups.
 
-            ✅ RUN is a running app that adapts to your fitness levels and designs personalized workouts to help you improve your running.
-
-            ❌ RUN is the only intelligent running app that uses sophisticated deep neural net machine learning to make your run smarter because we believe in ML driven workouts.
 
             """
         ),
-        dcc.Link(dbc.Button('Your Call To Action', color='primary'), href='/predictions')
+        dcc.Link(dbc.Button('Make a fight', color='primary'), href='/predictions')
     ],
     md=4,
 )
 
-gapminder = px.data.gapminder()
-fig = px.scatter(gapminder.query("year==2007"), x="gdpPercap", y="lifeExp", size="pop", color="continent",
-           hover_name="country", log_x=True, size_max=60)
+
+
 
 column2 = dbc.Col(
     [
-        dcc.Graph(figure=fig),
+       #dcc.Graph(figure=fig)
     ]
 )
 
 layout = dbc.Row([column1, column2])
+
